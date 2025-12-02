@@ -30,8 +30,8 @@ select
 	b.cntry as country,
 	c.cst_marital_status as marital_status, 
 	CASE
-		WHEN c.cst_gender = 'n/a' then a.gen
-		else c.cst_gender
+		WHEN c.cst_gender != 'n/a' then c.cst_gender
+		ELSE COALESCE(a.gen, 'n/a')
 	END as gender,
 	a.bdate as birthdate,
 	c.cst_create_date as create_date
